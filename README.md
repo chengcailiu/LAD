@@ -102,7 +102,3 @@ If you are using this code for a paper-based reproduction, it is helpful to docu
 - the target paper
 - input tensor format, for example `[B, C, D, H, W]`
 - patch size, backbone configuration, and task type
-
-## Scope
-
-This repository is intentionally minimal. It will keep the three Python files and README. If needed, I can later update the README usage notes without adding extra training code.
