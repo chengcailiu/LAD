@@ -1,12 +1,11 @@
 # LAD 3D Model Implementations
 
-A lightweight research-code repository that currently contains only model definitions for 3D volumetric inputs.
+A lightweight research-code repository that currently contains model definitions for 3D volumetric inputs.
 
 - `LAD_UNETR.py`
 - `LAD_SwinUNETR.py`
 - `LAD_Primus.py`
 
-If you are reproducing a paper or continuing development, treat this repo as a collection of model components rather than a runnable training or inference project.
 
 ## Repository Structure
 
@@ -87,18 +86,3 @@ x = torch.randn(1, 1, 96, 96, 96)
 logits = model(x)
 print(logits.shape)
 ```
-
-## Notes
-
-This codebase currently returns model logits only. It does not include:
-
-- training scripts
-- dataset loading
-- preprocessing pipelines
-- postprocessing for inference
-
-If you are using this code for a paper-based reproduction, it is helpful to document:
-
-- the target paper
-- input tensor format, for example `[B, C, D, H, W]`
-- patch size, backbone configuration, and task type
