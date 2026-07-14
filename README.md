@@ -1,5 +1,108 @@
-# LAD: Learnable Anisotropic Deformation for 3D Medical Image Analysis
+# LAD 3D Model Implementations
 
-**Official PyTorch implementation of LAD \(Learnable Anisotropic Deformation\) for 3D Medical Image Analysis**
+A lightweight research-code repository that currently contains only model definitions for 3D volumetric inputs.
 
-⚠️ **Code Coming Soon**
+- `LAD_UNETR.py`
+- `LAD_SwinUNETR.py`
+- `LAD_Primus.py`
+
+If you are reproducing a paper or continuing development, treat this repo as a collection of model components rather than a runnable training or inference project.
+
+## Repository Structure
+
+```text
+LAD_UNETR.py        # UNETR-style backbone; shared modules and base model
+LAD_SwinUNETR.py # SwinUNETR-style backbone; depends on LAD_UNETR.py
+LAD_Primus.py    # Primus / EVA-02-style backbone; depends on LAD_UNETR.py
+README.md
+```
+
+`LAD_SwinUNETR.py` and `LAD_Primus.py` import shared components from `LAD_UNETR.py`. Direct imports work when running from the source directory; this repo is not packaged.
+
+## Requirements
+
+- Python >= 3.8
+- PyTorch
+
+Recommended setup:
+
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+# Or use the PyTorch build that matches your local CUDA setup
+```
+
+## Quick Start
+
+These examples assume you have cloned the repository and are running from the directory containing these three `.py` files.
+
+### UNETR-style
+
+```python
+import torch
+from LAD_UNETR import LAD_UNETR
+
+model = LAD_UNETR(
+    in_channels=1,
+    out_channels=2,
+    img_size=(96, 96, 96),
+    patch_size=16,
+    task="segmentation",
+)
+x = torch.randn(2, 1, 96, 96, 96)
+logits = model(x)
+print(logits.shape)
+```
+
+### SwinUNETR-style
+
+```python
+import torch
+from LAD_SwinUNETR import LAD_SwinUNETR
+
+model = LAD_SwinUNETR(
+    in_channels=1,
+    out_channels=3,
+    patch_size=2,
+    task="segmentation",
+)
+x = torch.randn(1, 1, 96, 96, 96)
+logits = model(x)
+print(logits.shape)
+```
+
+### Primus-style
+
+```python
+import torch
+from LAD_Primus import LAD_Primus
+
+model = LAD_Primus(
+    in_channels=1,
+    out_channels=1,
+    img_size=(96, 96, 96),
+    patch_size=(8, 8, 8),
+    task="segmentation",
+)
+x = torch.randn(1, 1, 96, 96, 96)
+logits = model(x)
+print(logits.shape)
+```
+
+## Notes
+
+This codebase currently returns model logits only. It does not include:
+
+- training scripts
+- dataset loading
+- preprocessing pipelines
+- postprocessing for inference
+
+If you are using this code for a paper-based reproduction, it is helpful to document:
+
+- the target paper
+- input tensor format, for example `[B, C, D, H, W]`
+- patch size, backbone configuration, and task type
+
+## Scope
+
+This repository is intentionally minimal. It will keep the three Python files and README. If needed, I can later update the README usage notes without adding extra training code.
