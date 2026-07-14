@@ -26,8 +26,7 @@ README.md
 Recommended setup:
 
 ```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-# Or use the PyTorch build that matches your local CUDA setup
+pip install torch torchvision torchaudio
 ```
 
 ## Quick Start
