@@ -16,7 +16,7 @@ LAD_Primus.py    # Primus / EVA-02-style backbone; depends on LAD_UNETR.py
 README.md
 ```
 
-`LAD_SwinUNETR.py` and `LAD_Primus.py` import shared components from `LAD_UNETR.py`. Direct imports work when running from the source directory; this repo is not packaged.
+`LAD_SwinUNETR.py` and `LAD_Primus.py` import shared components from `LAD_UNETR.py`.
 
 ## Requirements
 
